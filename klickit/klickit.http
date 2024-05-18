@@ -1,0 +1,6 @@
+@klickit_HostAddress = http://localhost:5167
+
+GET {{klickit_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
