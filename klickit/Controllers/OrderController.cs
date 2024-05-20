@@ -11,7 +11,7 @@ namespace klickit.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles =AppRoles.Supplier)]
+    
     public class OrderController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -52,6 +52,7 @@ namespace klickit.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = AppRoles.Supplier)]
         public async Task<ActionResult> GetOrders([FromQuery] int page = 1)
         {
             int pageSize = 10;
@@ -67,6 +68,7 @@ namespace klickit.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = AppRoles.Supplier)]
         public async Task<ActionResult> ChangeOrderStatus(ChangeOrderStatusDto changeOrderStatusDto)
         {
           var order = await _context.Orders.Where(o=>o.Id==changeOrderStatusDto.OrderId).Include(o => o.Items)
